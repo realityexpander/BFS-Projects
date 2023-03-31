@@ -1,28 +1,32 @@
 export class BlogPostList extends HTMLElement {
   #posts = [];
-  
+
   constructor() {
     super();
-    
-    this.attachShadow({mode: 'open'});
+
+    this.attachShadow({ mode: 'open' });
   }
-  
+
   set posts(value) {
     this.#posts = value;
     this.render();
   }
-  
+
+  get posts() {
+    return this.#posts;
+  }
+
   get style() {
     return `
       <style>
-            :host {
-                margin-top: 30px;
-                display: block;
-            }
-            
-           :host * {
-                box-sizing: border-box;
-           }
+          :host {
+              margin-top: 30px;
+              display: block;
+          }
+          
+          :host * {
+              box-sizing: border-box;
+          }
           
           .blog-posts .posts {
             padding: 0 20px;
@@ -58,7 +62,7 @@ export class BlogPostList extends HTMLElement {
       </style>
     `
   }
-  
+
   render() {
     this.shadowRoot.innerHTML = `
       ${this.style}
@@ -79,6 +83,11 @@ export class BlogPostList extends HTMLElement {
       </section>
     `;
   }
+
+  static get observedAttributes() {
+    return ['posts'];
+  }
+
 }
 
 customElements.define('blog-post-list', BlogPostList);

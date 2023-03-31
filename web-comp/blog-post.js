@@ -3,21 +3,21 @@ export class BlogPost extends HTMLElement {
   description = '';
   link = '';
   thumbnail = '';
-  
+
   constructor() {
     super();
-    
-    this.attachShadow({mode: 'open'});
+
+    this.attachShadow({ mode: 'open' });
   }
-  
+
   static get observedAttributes() {
     return ['title', 'description', 'link', 'thumbnail'];
   }
-  
+
   connectedCallback() {
     this.render();
   }
-  
+
   attributeChangedCallback(name, oldValue, newValue) {
     // make sure it is mounted first
     if (this.isConnected) {
@@ -35,11 +35,11 @@ export class BlogPost extends HTMLElement {
           this.thumbnail = newValue || '';
           break;
       }
-  
+
       this.render()
     }
   }
-  
+
   get style() {
     return `
         <style>
@@ -112,7 +112,7 @@ export class BlogPost extends HTMLElement {
         </style>
       `
   }
-  
+
   get template() {
     return `
         <div class="blog-post">
@@ -125,7 +125,7 @@ export class BlogPost extends HTMLElement {
         </div>
       `
   }
-  
+
   render() {
     this.shadowRoot.innerHTML = `${this.style}${this.template}`;
   }
