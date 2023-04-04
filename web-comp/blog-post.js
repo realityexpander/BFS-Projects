@@ -127,7 +127,24 @@ export class BlogPost extends HTMLElement {
   }
 
   render() {
-    this.shadowRoot.innerHTML = `${this.style}${this.template}`;
+    //this.shadowRoot.innerHTML = `${this.style}${this.template}`;
+
+    // Use a template from the index.html DOM
+    const template = document.querySelector('template#blog-post-template');
+    if (template) {
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('img').src = this.thumbnail;
+      clone.querySelector('h2').textContent = this.title;
+      clone.querySelector('p').textContent = this.description;
+      clone.querySelector('a').href = this.link;
+      // this.shadowRoot.appendChild(clone);
+      // this.shadowRoot.innerHTML = clone;
+      this.shadowRoot.innerHTML = '';
+      let styleEl = document.createElement('style');
+      styleEl.innerHTML = this.style;
+      this.shadowRoot.appendChild(styleEl);
+      this.shadowRoot.appendChild(clone);
+    }
   }
 }
 

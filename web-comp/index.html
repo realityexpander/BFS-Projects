@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Web Component</title>
 	<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 	<header class="wrapper">
 		<h1 id="logo">Before Semicolon</h1>
@@ -68,6 +70,21 @@
 		<p class="copyright">copyright &copy; Before Semicolon 2021. All rights reserved.</p>
 	</footer>
 
+	<!-- Template fragments are ignored by the browser, but they can be used to store HTML 
+	templates in a separate file. The template element is used to declare fragments of 
+	HTML that can be cloned and inserted in the document by script. -->
+	<template id="blog-post-template">
+		<div class="blog-post">
+			<div class="thumbnail">
+				<img src="" alt="">
+			</div>
+			<h2>TITLE</h2>
+			<p>DESCRIPTION</p>
+			<a href="">Read More</a>
+		</div>
+	</template>
+
 	<script src="app.js" type="module"></script>
 </body>
+
 </html>
